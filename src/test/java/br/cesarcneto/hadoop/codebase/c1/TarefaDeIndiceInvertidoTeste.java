@@ -21,7 +21,7 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
-public class InvertedIndexJobTest {
+public class TarefaDeIndiceInvertidoTeste {
 
 	private MapDriver<LongWritable, Text, Text, Text> mapDriver;
 	private ReduceDriver<Text, Text, Text, Text> reduceDriver;
@@ -30,8 +30,8 @@ public class InvertedIndexJobTest {
 	@Before
 	public void setUp() throws Exception {
 
-		final InvertedIndexMapper mapper = new InvertedIndexMapper();
-		final InvertedIndexReducer reducer = new InvertedIndexReducer();
+		final MapeadorDeIndiceInvertido mapper = new MapeadorDeIndiceInvertido();
+		final RedutorDeIndiceInvertido reducer = new RedutorDeIndiceInvertido();
 
 		mapDriver = MapDriver.newMapDriver(mapper);
 		reduceDriver = ReduceDriver.newReduceDriver(reducer);
