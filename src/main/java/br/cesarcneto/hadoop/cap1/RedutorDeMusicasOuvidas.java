@@ -11,7 +11,7 @@ public class RedutorDeMusicasOuvidas extends Reducer<Text, LongWritable, Text, L
 	private final LongWritable totalDeVezes = new LongWritable(0);
 
 	@Override
-	protected void reduce(final Text musicaOuvida, final Iterable<LongWritable> quantidadeDeVezes, final Reducer<Text, LongWritable, Text, LongWritable>.Context contexto) throws IOException, InterruptedException {
+	protected void reduce(final Text musicaOuvida, final Iterable<LongWritable> quantidadeDeVezes, final Context contexto) throws IOException, InterruptedException {
 
 		long acumulador = 0;
 		for (final LongWritable quantidade : quantidadeDeVezes) {

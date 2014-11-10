@@ -27,7 +27,7 @@ public class MapeadorDeMusicasOuvidas extends Mapper<NullWritable, Text, Text, L
 	}
 
 	@Override
-	protected void map(final NullWritable chaveNula, final Text registroDeLog, final Mapper<NullWritable, Text, Text, LongWritable>.Context contexto) throws IOException, InterruptedException {
+	protected void map(final NullWritable chaveNula, final Text registroDeLog, final Context contexto) throws IOException, InterruptedException {
 		final String musicaOuvidaDoLog = extraiMusicaOuvidaDoLog(registroDeLog);
 		if (musicaOuvidaDoLog != null) {
 			musicaOuvida.set(musicaOuvidaDoLog);

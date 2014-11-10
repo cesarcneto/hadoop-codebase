@@ -24,6 +24,8 @@ public class TarefaProcessaMusicasPopularesTeste {
 	private static final LongWritable UM = new LongWritable(1l);
 	private static final LongWritable DOIS = new LongWritable(2l);
 	private static final LongWritable TRES = new LongWritable(3l);
+	private static final LongWritable QUATRO = new LongWritable(4l);
+	private static final LongWritable CINCO = new LongWritable(5l);
 
 	private MapDriver<NullWritable, Text, Text, LongWritable> driverDeMapeamento;
 	private ReduceDriver<Text, LongWritable, Text, LongWritable> driverDeReducao;
@@ -129,12 +131,14 @@ public class TarefaProcessaMusicasPopularesTeste {
 		final List<Pair<Text, List<LongWritable>>> listaDeEntrada = Arrays.asList(//
 				new Pair<Text, List<LongWritable>>(new Text("rather-be"), Arrays.asList(UM, DOIS)), //
 				new Pair<Text, List<LongWritable>>(new Text("diz-pra-mim"), Arrays.asList(DOIS, TRES)), //
-				new Pair<Text, List<LongWritable>>(new Text("domingo-de-manha"), Arrays.asList(UM, TRES)));
+				new Pair<Text, List<LongWritable>>(new Text("domingo-de-manha"), Arrays.asList(UM, TRES))//
+				);
 
 		final List<Pair<Text, LongWritable>> listaDeSaidaEsperada = Arrays.asList(//
 				new Pair<Text, LongWritable>(new Text("rather-be"), TRES), //
-				new Pair<Text, LongWritable>(new Text("diz-pra-mim"), new LongWritable(5l)), //
-				new Pair<Text, LongWritable>(new Text("domingo-de-manha"), new LongWritable(4l)));
+				new Pair<Text, LongWritable>(new Text("diz-pra-mim"), CINCO), //
+				new Pair<Text, LongWritable>(new Text("domingo-de-manha"), QUATRO)//
+				);
 
 		driverDeReducao.withAll(listaDeEntrada)//
 				.withAllOutput(listaDeSaidaEsperada)//
