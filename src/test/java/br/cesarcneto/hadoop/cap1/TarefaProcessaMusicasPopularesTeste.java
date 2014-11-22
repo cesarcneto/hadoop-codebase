@@ -49,10 +49,11 @@ public class TarefaProcessaMusicasPopularesTeste {
 	}
 
 	private List<Pair<NullWritable, Text>> getListaDeValoresEntrada() {
-		return criaListaDePares(//
-				new Pair<NullWritable, Text>(NullWritable.get(), new Text("20141030 20h15m55s: genero/pop/artista/clean-bandit-ft-jess-glynne/musica/rather-be/ouvir")), //
-				new Pair<NullWritable, Text>(NullWritable.get(), new Text("20141030 20h16m01s: genero/rock/artista/malta/musica/diz-pra-mim/ouvir")), //
-				new Pair<NullWritable, Text>(NullWritable.get(), new Text("20141030 20h16m15s: genero/sertanejo/artista/marcos-e-belutti/musica/domingo-de-manha/ouvir")));
+
+		return Arrays.asList(//
+				new Pair<>(NullWritable.get(), new Text("20141030 201555: genero/pop/artista/clean-bandit-ft-jess-glynne/musica/rather-be/ouvir")), //
+				new Pair<>(NullWritable.get(), new Text("20141030 201601: genero/rock/artista/malta/musica/diz-pra-mim/ouvir")), //
+				new Pair<>(NullWritable.get(), new Text("20141030 201615: genero/sertanejo/artista/marcos-e-belutti/musica/domingo-de-manha/ouvir")));
 	}
 
 	@Before
@@ -70,11 +71,12 @@ public class TarefaProcessaMusicasPopularesTeste {
 	public void testaMapeamentoComApenasUmRegistro() throws Exception {
 
 		final NullWritable chaveDeEntrada = NullWritable.get();
-		final Text valorDeEntrada = new Text("20141030 20h15m55s: genero/pop/artista/clean-bandit-ft-jess-glynne/musica/rather-be/ouvir");
+		final Text valorDeEntrada = new Text("20141030 201601: genero/rock/artista/malta/musica/diz-pra-mim/ouvir");
+		final Pair<NullWritable, Text> entradaEsperada = new Pair<>(chaveDeEntrada, valorDeEntrada);
 
-		final Pair<Text, LongWritable> saidaEsperada = new Pair<Text, LongWritable>(new Text("rather-be"), UM);
+		final Pair<Text, LongWritable> saidaEsperada = new Pair<>(new Text("diz-pra-mim"), UM);
 
-		driverDeMapeamento.withInput(chaveDeEntrada, valorDeEntrada)//
+		driverDeMapeamento.withInput(entradaEsperada)//
 				.withOutput(saidaEsperada) //
 				.runTest();
 	}
@@ -110,12 +112,12 @@ public class TarefaProcessaMusicasPopularesTeste {
 	@Test
 	public void testaReducaoApenasUmRegistro() throws Exception {
 
-		final Pair<Text, List<LongWritable>> valorDeEntrada = new Pair<Text, List<LongWritable>>(//
+		final Pair<Text, List<LongWritable>> valorDeEntrada = new Pair<>(//
 				new Text("rather-be"), //
 				Arrays.asList(UM, DOIS)//
 		);
 
-		final Pair<Text, LongWritable> valorDeSaidaEsperado = new Pair<Text, LongWritable>(//
+		final Pair<Text, LongWritable> valorDeSaidaEsperado = new Pair<>(//
 				new Text("rather-be"), //
 				TRES//
 		);
